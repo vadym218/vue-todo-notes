@@ -30,16 +30,24 @@ export default Vue.extend({
 <style lang="scss">
 html {
   overflow: overlay;
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px 4px 0 0;
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(120, 120, 120, .5);
-  border-radius: 4px;
+  background-color: #DDD;
+  border-radius: 4px 0 0 4px;
+
+  &:hover {
+    background-color: #BBB;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -55,6 +63,7 @@ html {
 }
 
 #grid {
+  max-height: calc(100vh - 25px);
   max-width: 1600px;
   margin: 0 auto;
   height: 100%;
@@ -76,15 +85,15 @@ html {
   }
 }
 
-h1 {
-  margin: 25px 0;
-  font-weight: 900;
-  color: #777;
-}
-
 .page {
   display: flex;
   flex-direction: column;
+
+  h1 {
+    margin: 25px 0;
+    font-weight: 900;
+    color: #777;
+  }
 
   >div {
     background-color: #FFF;
@@ -92,6 +101,12 @@ h1 {
     border-radius: 4px;
     display: flex;
     flex-direction: column;
+
+    .scrollable {
+      display: flex;
+      flex-direction: column;
+      overflow: overlay;
+    }
   }
 }
 </style>

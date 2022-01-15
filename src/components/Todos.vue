@@ -2,15 +2,19 @@
   <div class="page">
     <h1>Todos</h1>
     <div>
-      <p id="greeting">your todos will appear there</p>
+      <div v-if="selectedNote >= 0">{{ allTodos }}</div>
+      <p v-else id="greeting">your todos will appear there</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+import { mapGetters } from "vuex";
 
-}
+export default Vue.extend({
+  computed: mapGetters(["selectedNote", "allTodos"])
+});
 </script>
 
 <style lang="scss" scoped>
