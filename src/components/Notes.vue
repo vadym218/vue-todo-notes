@@ -2,19 +2,19 @@
   <div class="page">
     <h1>Notes</h1>
     <div>
-      <v-btn-toggle @change="handleToggle" v-model="selectedNote" v-if="allNotes.length" class="scrollable">
-        <div class="note" v-for="(note, index) in allNotes" :key="allNotes.length - index">
-          <v-btn text :value="index">
+      <v-btn-toggle :value="selectedNoteIndex" v-if="allNotes.length" class="scrollable">
+        <div class="note" v-for="(note, index) in allNotes" :key="index">
+          <v-btn text @click="setSelectedNote(index)">
             {{ note.name }}
           </v-btn>
-          <v-btn @mouseup="deleteNote" icon class="delete-note" v-if="index == selectedNote"><v-icon color="#888">mdi-delete</v-icon></v-btn>
+          <v-btn @mouseup="deleteNote" icon class="delete-note" v-if="index == selectedNoteIndex"><v-icon color="#888">mdi-delete</v-icon></v-btn>
         </div>
       </v-btn-toggle>
       <p v-else id="greeting">
         hello there<br />
         let's make some notes
       </p>
-      <v-btn x-large elevation="0" @click="handleNewNote" class="new-item">New Note</v-btn>
+      <v-btn x-large elevation="0" @click="newNote" class="new-item">New Note</v-btn>
     </div>
   </div>
 </template>
@@ -24,22 +24,8 @@ import Vue from "vue";
 import { mapMutations, mapGetters } from "vuex";
 
 export default Vue.extend({
-  data() {
-    return {
-      selectedNote: -1
-    }
-  },
-  computed: mapGetters(["allNotes"]),
-  methods: {
-    ...mapMutations(["newNote", "setSelectedNote", "deleteNote"]),
-    handleToggle() {
-      this.setSelectedNote(this.selectedNote);
-    },
-    handleNewNote() {
-      this.newNote();
-      this.selectedNote = 0
-    }
-  }
+  computed: mapGetters(["allNotes", "selectedNoteIndex"]),
+  methods: mapMutations(["newNote", "setSelectedNote", "deleteNote"])
 });
 </script>
 

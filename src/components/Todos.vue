@@ -9,6 +9,7 @@
           <v-text-field hide-details :class="{ 'done': todo.done }" :rules="[value => !!value || 'don\'t leave it empty']" hide-spin-buttons :value="todo.name" @blur="e => updateTodoName({ todoIndex: index, todoName: e.target.value})" />
           <v-btn icon @click="deleteTodo(index)" class="delete-note"><v-icon color="#888">mdi-close</v-icon></v-btn>
         </div>
+        <p v-if="!selectedNote.todos.length" id="greeting">no todos yet</p>
       </div>
       <p v-else id="greeting">your todos will appear here</p>
       <v-btn v-if="selectedNote" x-large elevation="0" @click="newTodo" class="new-item">New Todo</v-btn>
@@ -21,10 +22,7 @@ import Vue from 'vue';
 import { mapMutations, mapGetters } from "vuex";
 
 export default Vue.extend({
-  computed: {
-    ...mapGetters(["selectedNote"]),
-
-  },
+  computed: mapGetters(["selectedNote"]),
   methods: mapMutations(["newTodo", "updateNoteName", "updateTodoName", "updateTodoStatus", "deleteTodo"])
 });
 </script>
