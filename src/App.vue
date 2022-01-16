@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import Actions from "./components/Actions.vue"
-import Notes from "./components/Notes.vue"
-import Todos from "./components/Todos.vue"
+import Vue from "vue";
+import Actions from "./components/Actions.vue";
+import Notes from "./components/Notes.vue";
+import Todos from "./components/Todos.vue";
 
 export default Vue.extend({
   name: "App",
@@ -22,9 +22,9 @@ export default Vue.extend({
   components: {
     Notes,
     Actions,
-    Todos
-  }
-})
+    Todos,
+  },
+});
 </script>
 
 <style lang="scss">
@@ -42,11 +42,11 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #DDD;
+  background-color: #ddd;
   border-radius: 4px 0 0 4px;
 
   &:hover {
-    background-color: #BBB;
+    background-color: #bbb;
   }
 }
 
@@ -56,9 +56,9 @@ html {
 
 .v-main {
   min-width: 400px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   padding: 0px 25px 25px 25px !important;
-  background-color: #EEE;
+  background-color: #eee;
   align-items: center;
 }
 
@@ -68,18 +68,20 @@ html {
   margin: 0 auto;
   height: 100%;
   display: grid;
-  grid-template: "a b" 1fr
-                 "c c" auto
-              / 1fr 1fr;
+  grid-template:
+    "a b" 1fr
+    "c c" auto
+    / 1fr 1fr;
   gap: 25px;
 
   @media (max-width: 1000px) {
-    grid-template: "a"
-                   "b"
-                   "c";
+    grid-template:
+      "a"
+      "b"
+      "c";
     gap: 0;
 
-    >:last-child {
+    > :last-child {
       margin-top: 25px;
     }
   }
@@ -95,9 +97,9 @@ html {
     color: #777;
   }
 
-  >div {
-    background-color: #FFF;
-    box-shadow: 0 1px 2px 1px #DDD, 0 0 1px #EEE;
+  > div {
+    background-color: #fff;
+    box-shadow: 0 1px 2px 1px #ddd, 0 0 1px #eee;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -106,6 +108,11 @@ html {
       display: flex;
       flex-direction: column;
       overflow: overlay;
+    }
+
+    .new-item {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
   }
 }

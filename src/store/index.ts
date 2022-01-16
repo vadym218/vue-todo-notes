@@ -15,7 +15,7 @@ interface Note {
 
 interface State {
   notes: Note[],
-  selectedNote: number,
+  selectedNoteIndex: number,
   history: Note[],
   historyStep: number
 }
@@ -23,40 +23,46 @@ interface State {
 export default new Vuex.Store<State>({
   state: {
     notes: [],
-    selectedNote: -1,
+    selectedNoteIndex: -1,
     history: [],
     historyStep: 0,
   },
   mutations: {
     newNote(state) {
       state.notes.unshift({
-        name: "New Note",
+        name: "Note " + (state.notes.length + 1),
         todos: []
-      })
+      });
+      state.selectedNoteIndex = 0;
     },
-    setSelectedNote(state, selectedNote) {
-      state.selectedNote = selectedNote;
+    setSelectedNote(state, selectedNoteIndex) {
+      state.selectedNoteIndex = selectedNoteIndex;
     },
     deleteNote(state) {
-      state.notes.splice(state.selectedNote, 1);
-      state.selectedNote = -1;
-    },/*
-    updateNotes(state, notes) {
-      state.notes = notes;
+      state.notes.splice(state.selectedNoteIndex, 1);
+      state.selectedNoteIndex = -1;
     },
-    pushHistory() {
-
+    newTodo(state) {
+      state.notes[state.selectedNoteIndex].todos.push({
+        name: "Todo " + (state.notes[state.selectedNoteIndex].todos.length + 1),
+        done: false
+      });
     },
-    historyBack() {
-
+    updateNoteName(state, noteName) {
+      if (noteName) state.notes[state.selectedNoteIndex].name = noteName;
     },
-    historyForward() {
-
-    }*/
+    updateTodoName(state, { todoIndex, todoName }) {
+      if (todoName) state.notes[state.selectedNoteIndex].todos[todoIndex].name = todoName;
+    },
+    updateTodoStatus(state, todoIndex) {
+      state.notes[state.selectedNoteIndex].todos[todoIndex].done = !state.notes[state.selectedNoteIndex].todos[todoIndex].done;
+    },
+    deleteTodo(state, todoIndex) {
+      state.notes[state.selectedNoteIndex].todos.splice(todoIndex, 1);
+    }
   },
   getters: {
     allNotes: (state): Note[] => state.notes,
-    selectedNote(state): number { return state.selectedNote},
-    allTodos: (state): Todo[] => state.selectedNote > 0 ? state.notes[state.selectedNote].todos : []
+    selectedNote: (state): Note | undefined => state.selectedNoteIndex >= 0 ? state.notes[state.selectedNoteIndex] : undefined
   }
 });
