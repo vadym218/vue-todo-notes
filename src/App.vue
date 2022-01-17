@@ -88,6 +88,7 @@ html {
 }
 
 .page {
+  max-height: 100%;
   display: flex;
   flex-direction: column;
 
@@ -98,6 +99,7 @@ html {
   }
 
   > div {
+    max-height: 100%;
     background-color: #fff;
     box-shadow: 0 1px 2px 1px #ddd, 0 0 1px #eee;
     border-radius: 4px;
@@ -105,9 +107,15 @@ html {
     flex-direction: column;
 
     .scrollable {
+      max-height: 800px;
+      padding: 12.5px;
       display: flex;
       flex-direction: column;
       overflow: overlay;
+
+      >* {    
+        margin: 12.5px;
+      }
     }
 
     .new-item {

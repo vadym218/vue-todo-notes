@@ -6,8 +6,8 @@
     <v-btn :disabled="!historyAvailability.redo" @click="redo" large icon>
       <v-icon color="#888">mdi-redo</v-icon>
     </v-btn>
-    <v-btn large text rounded color="#888">Import</v-btn>
-    <v-btn large text rounded color="#888">Export</v-btn>
+    <v-btn large text rounded color="#888" @click="loadFromFile">Import</v-btn>
+    <v-btn large text rounded color="#888" @click="saveToFile">Export</v-btn>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default Vue.extend({
   computed: mapGetters(["historyAvailability"]),
-  methods: mapMutations(["undo", "redo"])
+  methods: mapMutations(["undo", "redo", "loadFromFile", "saveToFile"]),
 });
 </script>
 
@@ -27,7 +27,7 @@ export default Vue.extend({
   justify-content: center;
   grid-area: c;
 
-  >* {
+  > * {
     margin: 0 5px;
   }
 }

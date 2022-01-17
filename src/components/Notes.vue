@@ -2,19 +2,31 @@
   <div class="page">
     <h1>Notes</h1>
     <div>
-      <v-btn-toggle :value="selectedNoteIndex" v-if="allNotes.length" class="scrollable">
+      <v-btn-toggle
+        :value="selectedNoteIndex"
+        v-if="allNotes.length"
+        class="scrollable"
+      >
         <div class="note" v-for="(note, index) in allNotes" :key="index">
-          <v-btn text @click="setSelectedNote(index)">
+          <v-btn text :value="index" @click="setSelectedNote(index)">
             {{ note.name }}
           </v-btn>
-          <v-btn @mouseup="deleteNote" icon class="delete-note" v-if="index == selectedNoteIndex"><v-icon color="#888">mdi-delete</v-icon></v-btn>
+          <v-btn
+            @click="deleteNote"
+            icon
+            class="delete-note"
+            v-if="index == selectedNoteIndex"
+            ><v-icon color="#888">mdi-delete</v-icon></v-btn
+          >
         </div>
       </v-btn-toggle>
       <p v-else id="greeting">
         hello there<br />
         let's make some notes
       </p>
-      <v-btn x-large elevation="0" @click="newNote" class="new-item">New Note</v-btn>
+      <v-btn x-large elevation="0" @click="newNote" class="new-item"
+        >New Note</v-btn
+      >
     </div>
   </div>
 </template>
@@ -25,7 +37,7 @@ import { mapMutations, mapGetters } from "vuex";
 
 export default Vue.extend({
   computed: mapGetters(["allNotes", "selectedNoteIndex"]),
-  methods: mapMutations(["newNote", "setSelectedNote", "deleteNote"])
+  methods: mapMutations(["newNote", "setSelectedNote", "deleteNote"]),
 });
 </script>
 
@@ -34,22 +46,8 @@ export default Vue.extend({
   grid-area: a;
 }
 
-.scrollable {
-  margin-top: 25px;
-  padding: 0 12.5px 12.5px 12.5px;
-
-  &::-webkit-scrollbar-track {
-    margin-bottom: 25px;
-  }
-}
-
 .note {
   display: flex;
-  margin: 12.5px;
-
-  &:first-of-type {
-    margin-top: 0;
-  }
 
   .v-btn {
     &:first-of-type {
@@ -65,7 +63,7 @@ export default Vue.extend({
   }
 
   .delete-note {
-      margin-left: 12.5px;
+    margin-left: 12.5px;
   }
 }
 
