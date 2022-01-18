@@ -55,7 +55,7 @@ html {
 }
 
 .v-main {
-  min-width: 400px;
+  min-width: 350px;
   font-family: "Montserrat";
   padding: 0px 25px 25px 25px !important;
   background-color: #eee;
@@ -63,7 +63,7 @@ html {
 }
 
 #grid {
-  max-height: calc(100vh - 25px);
+  box-sizing: border-box;
   max-width: 1600px;
   margin: 0 auto;
   height: 100%;
@@ -88,7 +88,6 @@ html {
 }
 
 .page {
-  max-height: 100%;
   display: flex;
   flex-direction: column;
 
@@ -99,7 +98,6 @@ html {
   }
 
   > div {
-    max-height: 100%;
     background-color: #fff;
     box-shadow: 0 1px 2px 1px #ddd, 0 0 1px #eee;
     border-radius: 4px;
@@ -107,13 +105,12 @@ html {
     flex-direction: column;
 
     .scrollable {
-      max-height: 800px;
       padding: 12.5px;
       display: flex;
       flex-direction: column;
       overflow: overlay;
 
-      >* {    
+      > * {
         margin: 12.5px;
       }
     }
@@ -123,5 +120,11 @@ html {
       border-top-right-radius: 0;
     }
   }
+}
+
+.v-dialog {
+  font-family: "Montserrat";
+  box-shadow: none;
+  overflow: visible;
 }
 </style>
