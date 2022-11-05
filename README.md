@@ -1,11 +1,11 @@
-# Todo Notes
+# [Todo Notes](https://vue-todo-notes.herokuapp.com/)
+Learned Vue and completed this test task in under 3 days.
 
-- Vue.js
-- Vuetify
-- Vuex
-- Typescript
-- SCSS
+## Technologies:
+- Vue
+- Vuex, TypeScript
+- Vuetify, SCSS
 
-https://vue-todo-notes.herokuapp.com/
+Implemented notes export and import in human-readable md-like form
 
-![image](https://user-images.githubusercontent.com/31629500/149849364-3e6deaa4-f996-49f8-af13-77ca5b368ca4.png)
+<img src="https://user-images.githubusercontent.com/31629500/149849364-3e6deaa4-f996-49f8-af13-77ca5b368ca4.png" width="750" />
