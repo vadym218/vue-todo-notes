@@ -1,4 +1,4 @@
-# [Todo Notes](https://vue-todo-notes.herokuapp.com/)
+# [***Todo Notes***](https://vue-todo-notes.herokuapp.com/)
 Learned Vue and completed this test task in under 3 days.
 
 ## Technologies:
