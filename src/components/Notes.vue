@@ -24,7 +24,7 @@
         hello there<br />
         let's make some notes
       </p>
-      <v-btn x-large elevation="0" @click="newNote" class="new-item"
+      <v-btn x-large elevation="0" @click="createNote" class="new-item"
         >New Note</v-btn
       >
     </div>
@@ -37,7 +37,7 @@ import { mapMutations, mapGetters } from "vuex";
 
 export default Vue.extend({
   computed: mapGetters(["allNotes", "selectedNoteIndex"]),
-  methods: mapMutations(["newNote", "setSelectedNote", "deleteNote"]),
+  methods: mapMutations(["createNote", "setSelectedNote", "deleteNote"]),
 });
 </script>
 

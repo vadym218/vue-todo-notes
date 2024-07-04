@@ -7,7 +7,7 @@
           :rules="[(value) => !!value || 'don\'t leave it empty']"
           hint="your note name here"
           :value="selectedNote.name"
-          @blur="(e) => updateNoteName(e.target.value)"
+          @blur="(e) => setNoteName(e.target.value)"
           class="note-name"
         />
         <div
@@ -16,21 +16,21 @@
           class="todo"
         >
           <v-checkbox
-            :input-value="todo.done"
-            :key="todo.done"
-            @change="updateTodoStatus(index)"
+            :input-value="todo.isDone"
+            :key="todo.isDone"
+            @change="toggleTodo(index)"
             hide-details
             color="#888"
           />
           <v-text-field
             hide-details
-            :class="{ done: todo.done }"
+            :class="{ isDone: todo.isDone }"
             :rules="[(value) => !!value || 'don\'t leave it empty']"
             hide-spin-buttons
             :value="todo.name"
             @blur="
               (e) =>
-                updateTodoName({ todoIndex: index, todoName: e.target.value })
+                setTodoName({ todoIndex: index, todoName: e.target.value })
             "
           />
           <v-btn icon @click="deleteTodo(index)" class="delete-note"
@@ -44,7 +44,7 @@
         v-if="selectedNote"
         x-large
         elevation="0"
-        @click="newTodo"
+        @click="createTodo"
         class="new-item"
         >New Todo</v-btn
       >
@@ -59,10 +59,10 @@ import { mapMutations, mapGetters } from "vuex";
 export default Vue.extend({
   computed: mapGetters(["selectedNote"]),
   methods: mapMutations([
-    "newTodo",
-    "updateNoteName",
-    "updateTodoName",
-    "updateTodoStatus",
+    "createTodo",
+    "setNoteName",
+    "setTodoName",
+    "toggleTodo",
     "deleteTodo",
   ]),
 });
@@ -91,7 +91,7 @@ export default Vue.extend({
     font-size: 24px;
     margin: 0 12.5px;
 
-    &.done {
+    &.isDone {
       opacity: 0.5;
       text-decoration: line-through !important;
     }

@@ -7,8 +7,8 @@
       <v-btn :disabled="!historyAvailability.redo" @click="redo" icon>
         <v-icon size="24" color="#888">mdi-redo</v-icon>
       </v-btn>
-      <v-btn text rounded color="#888" @click="loadFromFile">Import</v-btn>
-      <v-btn text rounded color="#888" @click="saveToFile">Export</v-btn>
+      <v-btn text rounded color="#888" @click="readFromFile">Import</v-btn>
+      <v-btn text rounded color="#888" @click="writeToFile">Export</v-btn>
       <v-dialog max-width="500" v-model="clearDialog" overlay-opacity=".1">
         <template v-slot:activator="{ on, attrs }">
           <v-btn text rounded color="#888" v-bind="attrs" v-on="on"
@@ -68,8 +68,8 @@ export default Vue.extend({
   methods: mapMutations([
     "undo",
     "redo",
-    "loadFromFile",
-    "saveToFile",
+    "writeToFile",
+    "readFromFile",
     "clear",
   ]),
 });
