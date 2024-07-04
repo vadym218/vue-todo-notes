@@ -13,5 +13,3 @@ Vue, Vuetify, Vuex, TypeScript, SCSS.
 - Persist data between reloads by using _local storage_
 - Keep a history of edits -> _undo_, _redo_
 - _Export_ and _import_ the data in _Markdown_ format
-
-
