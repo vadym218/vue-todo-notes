@@ -1,3 +1,5 @@
+import { Note, State, Todo } from "./types";
+
 export const saveToLocalStorage = (state: State) => {
   localStorage.setItem("data", JSON.stringify(state));
 };
@@ -47,12 +49,12 @@ const findClosest = (str: string, pointer: number) => {};
 export const markdownToNotes = (markdown: string) => {
   const notes: Note[] = [];
 
-  let pointer = findNextIndex(markdown, "#", 0);
+  const pointer = findNextIndex(markdown, "#", 0);
   let isNoteName = true;
   let isDone = false;
 
   let noteName = "";
-  const todos: Todo[] = [];
+  let todos: Todo[] = [];
 
   while (pointer !== -1) {
     let newPointer = findNextIndex(markdown, "#", pointer);

@@ -2,9 +2,9 @@
   <v-app>
     <v-main>
       <div id="grid">
-        <notes />
-        <todos />
-        <actions />
+        <Notes />
+        <Todos />
+        <Actions />
       </div>
     </v-main>
   </v-app>
@@ -17,12 +17,10 @@ import Notes from "./components/Notes.vue";
 import Todos from "./components/Todos.vue";
 
 export default Vue.extend({
-  name: "App",
-
   components: {
     Notes,
-    Actions,
     Todos,
+    Actions,
   },
 });
 </script>
@@ -99,7 +97,9 @@ html {
 
   > div {
     background-color: #fff;
-    box-shadow: 0 1px 2px 1px #ddd, 0 0 1px #eee;
+    box-shadow:
+      0 1px 2px 1px #ddd,
+      0 0 1px #eee;
     border-radius: 4px;
     display: flex;
     flex-direction: column;

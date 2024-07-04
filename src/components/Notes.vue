@@ -35,10 +35,10 @@
 import Vue from "vue";
 import { mapMutations, mapGetters } from "vuex";
 
-export default Vue.extend({
+export default {
   computed: mapGetters(["allNotes", "selectedNoteIndex"]),
   methods: mapMutations(["createNote", "setSelectedNote", "deleteNote"]),
-});
+};
 </script>
 
 <style lang="scss" scoped>

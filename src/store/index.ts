@@ -1,8 +1,13 @@
+import { saveAs } from "file-saver";
 import Vue from "vue";
 import Vuex from "vuex";
-import { saveAs } from "file-saver";
-import type { State, HistoryEntry, Todo, Note } from "./types";
-import { markdownToNotes, stateToMarkdown } from ".helpers";
+import {
+  markdownToNotes,
+  saveToLocalStorage,
+  stateToMarkdown,
+  unshiftHistory,
+} from "./helpers";
+import type { State } from "./types";
 
 Vue.use(Vuex);
 
@@ -11,22 +16,17 @@ const emptyHistoryEntry = {
   selectedNoteIndex: -1,
 };
 
-const emptyState = {
+const emptyState: State = {
   ...emptyHistoryEntry,
   history: [emptyHistoryEntry],
   undoStep: 0,
 };
 
-let initialState;
-
-try {
-  initialState = JSON.parse(localStorage.getItem("data"));
-} catch {
-  initialState = structuredClone(emptyState);
-}
+const data = localStorage.getItem("data");
+const initialState = data && JSON.parse(data);
 
 export default new Vuex.Store<State>({
-  state: initialState,
+  state: initialState ?? structuredClone(emptyState),
 
   getters: {
     allNotes: (state) => state.notes,
@@ -140,14 +140,11 @@ export default new Vuex.Store<State>({
         const reader = new FileReader();
 
         reader.addEventListener("load", () => {
-          if (!reader.result) {
-            return;
+          if (typeof reader.result === "string") {
+            state.notes = markdownToNotes(reader.result);
+            state.selectedNoteIndex = -1;
+            unshiftHistory(state);
           }
-
-          state.notes = markdownToNotes(reader.result);
-          state.selectedNoteIndex = -1;
-
-          unshiftHistory(state);
         });
 
         if (fileInput.files?.length) {
@@ -159,7 +156,10 @@ export default new Vuex.Store<State>({
     },
 
     clear(state) {
-      state = structuredClone(emptyState);
+      for (const key in emptyState) {
+        // @ts-expect-error correct
+        state[key] = emptyState[key];
+      }
       localStorage.removeItem("data");
     },
   },

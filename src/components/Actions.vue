@@ -58,7 +58,7 @@
 import Vue from "vue";
 import { mapGetters, mapMutations } from "vuex";
 
-export default Vue.extend({
+export default {
   data() {
     return {
       clearDialog: false,
@@ -72,7 +72,7 @@ export default Vue.extend({
     "readFromFile",
     "clear",
   ]),
-});
+};
 </script>
 
 <style lang="scss" scoped>
@@ -101,7 +101,9 @@ export default Vue.extend({
   }
 
   > div {
-    box-shadow: 0 1px 2px 1px #fbb, 0 0 1px #fcc;
+    box-shadow:
+      0 1px 2px 1px #fbb,
+      0 0 1px #fcc;
   }
 
   #clear-no {

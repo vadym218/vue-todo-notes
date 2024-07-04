@@ -29,8 +29,7 @@
             hide-spin-buttons
             :value="todo.name"
             @blur="
-              (e) =>
-                setTodoName({ todoIndex: index, todoName: e.target.value })
+              (e) => setTodoName({ todoIndex: index, todoName: e.target.value })
             "
           />
           <v-btn icon @click="deleteTodo(index)" class="delete-note"
@@ -56,16 +55,16 @@
 import Vue from "vue";
 import { mapMutations, mapGetters } from "vuex";
 
-export default Vue.extend({
+export default {
   computed: mapGetters(["selectedNote"]),
   methods: mapMutations([
-    "createTodo",
     "setNoteName",
+    "createTodo",
     "setTodoName",
     "toggleTodo",
     "deleteTodo",
   ]),
-});
+};
 </script>
 
 <style lang="scss" scoped>
