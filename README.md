@@ -9,8 +9,9 @@ A test task I completed in 2022 in under 3 days without prior experience in the 
 Vue, Vuetify, Vuex, TypeScript, SCSS.
 
 ## Features:
-- A note (tab) has a couple of todos assigned to it
-- Keep a history of edits -> undo, redo
-- Export and import the data in Markdown-like form
+- A _note_ has a couple of _todos_ assigned to it
+- Persist data between reloads by using _local storage_
+- Keep a history of edits -> _undo_, _redo_
+- _Export_ and _import_ the data in _Markdown_ format
 
 
