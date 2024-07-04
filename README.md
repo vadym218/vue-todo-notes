@@ -1,14 +1,16 @@
-# Todo Notes
+# Vue Todo Notes
 
-Learned Vue and completed this test task in under 3 days.
+A test task I completed in 2022 in under 3 days without prior experience in the Vue ecosystem and TypeScript.
 
-## Technologies:
-- Vue
-- Vuex, TypeScript
-- Vuetify, SCSS
+![Screenshot of the application](https://github.com/vrepetskyi/todo-notes/assets/31629500/108b73c0-2bdf-48ef-acf2-e7fbd5962e35)
+
+## Technologies
+
+Vue, Vuetify, Vuex, TypeScript, SCSS.
 
 ## Features:
-- note export and import in human-readable MD-like form
-- editing history
+- A note (tab) has a couple of todos assigned to it
+- Keep a history of edits -> undo, redo
+- Export and import the data in Markdown-like form
 
-<img src="https://user-images.githubusercontent.com/31629500/149849364-3e6deaa4-f996-49f8-af13-77ca5b368ca4.png" width="750" />
+
