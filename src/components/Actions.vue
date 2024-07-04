@@ -46,7 +46,7 @@
       <v-btn
         rounded
         text
-        href="https://github.com/vadym218/vue-todo-notes"
+        href="https://linkedin.com/in/vrepetskyi/"
         target="blank"
         >Vadym Repetskyi</v-btn
       ></span
