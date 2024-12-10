@@ -13,7 +13,7 @@ export type HistoryEntry = {
   selectedNoteIndex: number;
 };
 
-export type State = HistoryEntry & {
+export type State = {
   history: HistoryEntry[];
   undoStep: number;
 };

@@ -1,85 +1,84 @@
 <template>
-  <div class="page">
+  <div>
     <h1>Todos</h1>
+
     <div>
-      <div v-if="selectedNote" class="scrollable">
-        <v-text-field
-          :rules="[(value) => !!value || 'don\'t leave it empty']"
-          hint="your note name here"
-          :value="selectedNote.name"
-          @blur="(e) => setNoteName(e.target.value)"
-          class="note-name"
-        />
+      <p v-if="!selectedNote" class="hint">
+        select a note to see assigned todos
+      </p>
+
+      <div v-else class="pane">
+        <p v-if="!selectedNote.todos.length" class="hint">
+          create the first todo for this note
+        </p>
+
         <div
-          v-for="(todo, index) in selectedNote.todos"
+          v-for="({ isDone, name }, index) in selectedNote.todos"
           :key="index"
           class="todo"
         >
-          <v-checkbox
-            :input-value="todo.isDone"
-            :key="todo.isDone"
-            @change="toggleTodo(index)"
-            hide-details
-            color="#888"
-          />
+          <div @keydown="(e) => e.key === 'Enter' && toggleTodo(index)">
+            <v-checkbox
+              :key="name"
+              hide-details
+              color="#888"
+              :input-value="isDone"
+              @change="toggleTodo(index)"
+            />
+          </div>
+
           <v-text-field
             hide-details
-            :class="{ isDone: todo.isDone }"
-            :rules="[(value) => !!value || 'don\'t leave it empty']"
             hide-spin-buttons
-            :value="todo.name"
-            @blur="
-              (e) => setTodoName({ todoIndex: index, todoName: e.target.value })
-            "
+            color="#222"
+            :class="{ isDone }"
+            :value="name"
+            :rules="[(value) => !!value || 'don\'t leave it empty']"
+            @blur="(e) => setTodoName(index, e)"
+            @keydown="(e) => e.key === 'Enter' && setTodoName(index, e)"
           />
+
           <v-btn icon @click="deleteTodo(index)" class="delete-note"
             ><v-icon color="#888">mdi-close</v-icon></v-btn
           >
         </div>
-        <p v-if="!selectedNote.todos.length" id="greeting">no todos yet</p>
       </div>
-      <p v-else id="greeting">your todos will appear here</p>
+
       <v-btn
         v-if="selectedNote"
         x-large
         elevation="0"
         @click="createTodo"
-        class="new-item"
-        >New Todo</v-btn
+        class="add-button"
+        >Add Todo</v-btn
       >
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { mapMutations, mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   computed: mapGetters(["selectedNote"]),
-  methods: mapMutations([
-    "setNoteName",
-    "createTodo",
-    "setTodoName",
-    "toggleTodo",
-    "deleteTodo",
-  ]),
+
+  methods: {
+    ...mapMutations(["createTodo", "toggleTodo", "deleteTodo"]),
+
+    setTodoName(todoIndex: number, e: Event) {
+      this.$store.commit("setTodoName", {
+        todoIndex,
+        todoName: (e.target as HTMLInputElement).value,
+      });
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.page {
-  grid-area: b;
-}
-
-.note-name {
-  font-size: 28px;
-}
-
 .todo {
   display: flex;
   align-items: center;
-  margin: 12.5px;
 
   .v-input {
     margin: 0;
@@ -95,13 +94,5 @@ export default {
       text-decoration: line-through !important;
     }
   }
-}
-
-#greeting {
-  color: #999;
-  font-size: 28px;
-  display: block;
-  text-align: center;
-  margin: 25px;
 }
 </style>
